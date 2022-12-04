@@ -2,6 +2,8 @@ from threading import Thread
 from datetime import datetime
 from network import connect, send
 
+game_dict = {}
+
 def timestamp_to_iso(timestamp):
     return datetime.fromtimestamp(timestamp / 1000)\
         .isoformat().replace('T', ' ').split('.')[0]
@@ -41,8 +43,6 @@ def rps_round():
     print(rps_win(player_1, player_2))
 
 
-rps_round()
-
 def react_on_messages(timestamp, user, message):
     time = timestamp_to_iso(timestamp)
     print(f'\n{time} {user}\n{message}\n')
@@ -51,4 +51,5 @@ user = input('Your name: ')
 channel = input('Channel to join or create: ')
 
 connect(channel, user, react_on_messages)
+game_dict.update(user, '')
 
