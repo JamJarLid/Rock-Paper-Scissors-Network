@@ -1,33 +1,20 @@
-game_dict = {}
-
-
-def get_key(val):
-    global game_dict
-    for key, value in game_dict:
-        if val == value:
-            return key
-
 def choose_rps(player):
-    global game_dict
     choice = input(f'''{player}, make your choice (1-3): 
     1. Rock
     2. Paper
     3. Scissors
     ''')
     if choice == '1':
-        game_dict.update({player: 'Rock'})
-        return 'Rock'
+        send(play=(player, 'Rock'))
     elif choice == '2':
-        game_dict.update({player: 'Paper'})
-        return 'Paper'
+        send(play=(player, 'Paper'))
     elif choice == '3':
-        game_dict.update({player: 'Scissors'})
-        return 'Scissors'
+        send(play=(player, 'Scissors'))
     else:
         choose_rps()
 
 def rps_win():
-    global game_dict
+    
     if 'Rock' and 'Paper' in game_dict:
         return get_key('Paper')
     elif 'Paper' and 'Scissors' in game_dict:
