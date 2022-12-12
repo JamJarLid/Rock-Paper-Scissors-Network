@@ -34,7 +34,9 @@ def choose_rps():
         else:
             choose_rps()
 
-
+#hello Mr Holländare. Testa skriva en funktion för att registrera matchresultatet (så som din hashmap gör på ett ungefär med resultaten)
+#  och sen en ny funktion för win conditionen som läser av matchresultatet på det sättet.
+#  Fungerar det fortfarande inte så är det förmodligen något off med din win condition-kod.
 def rps_win(dict):
     global choices
     if 'Rock' in [dict.values] and 'Paper' in [dict.values]:
