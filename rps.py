@@ -1,38 +1,20 @@
-def choose_rps(player):
-    choice = input(f'''{player}, make your choice (1-3): 
-    1. Rock
-    2. Paper
-    3. Scissors
-    ''')
-    if choice == '1':
-        send(play=(player, 'Rock'))
-    elif choice == '2':
-        send(play=(player, 'Paper'))
-    elif choice == '3':
-        send(play=(player, 'Scissors'))
-    else:
-        choose_rps()
+choices = {'espen': 'Rock',
+            'hanna': 'Paper'}
 
-def rps_win():
-    
-    if 'Rock' and 'Paper' in game_dict:
-        return get_key('Paper')
-    elif 'Paper' and 'Scissors' in game_dict:
-        return get_key('Scissors')
-    elif 'Rock' and 'Scissors' in game_dict:
-        return get_key('Rock')
+def get_key(val, dict):
+    for key, value in dict.items():
+        if val == value:
+            return key
+
+def rps_win(dict):
+    if 'Rock' in list(dict.values()) and 'Paper' in list(dict.values()):
+        return get_key('Paper', dict)
+    elif 'Paper' in list(dict.values()) and 'Scissors' in list(dict.values()):
+        return get_key('Scissors', dict)
+    elif 'Rock' in list(dict.values()) and 'Scissors' in list(dict.values()):
+        return get_key('Rock', dict)
     else:
         return 'Tie'
 
-def rps_round():
-    global game_dict
-    player_1 = input('Name: ')
-    player_2 = input('Name: ')
-    game_dict[player_1] = ''
-    game_dict[player_2] = ''
-    choose_rps(player_1)
-    choose_rps(player_2)
-    print(rps_win())
 
-rps_round()
-
+print(len(choices))

@@ -34,16 +34,12 @@ def choose_rps():
         else:
             choose_rps()
 
-#hello Mr Holländare. Testa skriva en funktion för att registrera matchresultatet (så som din hashmap gör på ett ungefär med resultaten)
-#  och sen en ny funktion för win conditionen som läser av matchresultatet på det sättet.
-#  Fungerar det fortfarande inte så är det förmodligen något off med din win condition-kod.
 def rps_win(dict):
-    global choices
-    if 'Rock' in [dict.values] and 'Paper' in [dict.values]:
+    if 'Rock' in list(dict.values()) and 'Paper' in list(dict.values()):
         return get_key('Paper', dict)
-    elif 'Paper' in [dict.values] and 'Scissors' in [dict.values]:
+    elif 'Paper' in list(dict.values()) and 'Scissors' in list(dict.values()):
         return get_key('Scissors', dict)
-    elif 'Rock' in [dict.values] and 'Scissors' in [dict.values]:
+    elif 'Rock' in list(dict.values()) and 'Scissors' in list(dict.values()):
         return get_key('Rock', dict)
     else:
         return 'Tie'
@@ -54,11 +50,14 @@ def rps_round(timestamp, user, message):
     global choices
     if message in ['Paper', 'Rock', 'Scissors']:
         choices[user] = message
-        if len(choices.keys) > 1:
+        if len(choices) == 2:
             winner = rps_win(choices)
-            print(winner)
-            win_message = f'The winner is {winner}!'
-            react_on_messages(timestamp, user, win_message)
+            if winner == 'Tie':
+                win_message = f'The match is a Tie!'
+                react_on_messages(timestamp, user, win_message)
+            else:
+                win_message = f'The winner is {winner}!'
+                react_on_messages(timestamp, user, win_message)
     else:
         react_on_messages(timestamp, user, message)
 
