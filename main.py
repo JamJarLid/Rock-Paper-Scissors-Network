@@ -19,20 +19,19 @@ def react_on_messages(timestamp, user, message):
     print(f'\n{time} {user}\n{message}\n')
 
 def choose_rps():
-    while True:
-        choice = input(f'''{user}, make your choice (1-3): 
-        1. Rock
-        2. Paper
-        3. Scissors
-        ''')
-        if choice == '1':
-            send('Rock')
-        elif choice == '2':
-            send('Paper')
-        elif choice == '3':
-            send('Scissors')
-        else:
-            choose_rps()
+    choice = input(f'''{user}, make your choice (1-3): 
+    1. Rock
+    2. Paper
+    3. Scissors
+    ''')
+    if choice == '1':
+        send('Rock')
+    elif choice == '2':
+        send('Paper')
+    elif choice == '3':
+        send('Scissors')
+    else:
+        choose_rps()
 
 def rps_win(dict):
     if 'Rock' in list(dict.values()) and 'Paper' in list(dict.values()):
